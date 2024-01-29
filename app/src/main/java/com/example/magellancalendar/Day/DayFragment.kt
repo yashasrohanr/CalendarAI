@@ -1,12 +1,13 @@
 package com.example.magellancalendar.Day
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.example.magellancalendar.R
+import com.example.magellancalendar.SharedViewModel
 
 class DayFragment : Fragment() {
 
@@ -15,7 +16,7 @@ class DayFragment : Fragment() {
     }
 
     private lateinit var viewModel: DayViewModel
-
+    private lateinit var sharedViewModel: SharedViewModel
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -25,6 +26,7 @@ class DayFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        sharedViewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
         viewModel = ViewModelProvider(this).get(DayViewModel::class.java)
         // TODO: Use the ViewModel
     }

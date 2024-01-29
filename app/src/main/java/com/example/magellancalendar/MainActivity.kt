@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.example.magellancalendar.Day.DayFragment
 import com.example.magellancalendar.Month.MonthFragment
 import com.example.magellancalendar.Settings.SettingsFragment
@@ -22,7 +23,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private val binding get() = _binding!!
     private lateinit var drawer : DrawerLayout
     private lateinit var toggle : ActionBarDrawerToggle
-
+    private lateinit var sharedViewModel: SharedViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityMainBinding.inflate(layoutInflater)
@@ -41,7 +42,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         toggle.syncState()
 
         binding.navView.setNavigationItemSelectedListener(this)
-
+        sharedViewModel = ViewModelProvider(this).get(SharedViewModel::class.java)
         // default fragment
         loadFragment(MonthFragment())
     }
