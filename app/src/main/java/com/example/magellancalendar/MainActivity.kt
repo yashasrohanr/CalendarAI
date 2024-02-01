@@ -37,7 +37,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.string.navigation_drawer_close
         )
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
         drawer.addDrawerListener(toggle)
         toggle.syncState()
 
@@ -57,7 +56,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val fragment: Fragment = when (item.itemId) {
             R.id.nav_day -> DayFragment()
             R.id.nav_week -> WeekFragment()
-            R.id.nav_month -> MonthFragment()
+            R.id.nav_month -> ViewPa()
             R.id.nav_year -> YearFragment()
             R.id.nav_settings -> SettingsFragment()
             R.id.nav_sync -> SyncingFragment()

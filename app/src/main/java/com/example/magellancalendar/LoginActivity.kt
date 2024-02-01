@@ -19,9 +19,7 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
-
     }
-
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
