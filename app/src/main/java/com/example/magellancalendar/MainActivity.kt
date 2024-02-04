@@ -1,7 +1,9 @@
 package com.example.magellancalendar
 
+import android.os.Build
 import android.os.Bundle
 import android.view.MenuItem
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
@@ -16,7 +18,7 @@ import com.example.magellancalendar.Week.WeekFragment
 import com.example.magellancalendar.Year.YearFragment
 import com.example.magellancalendar.databinding.ActivityMainBinding
 import com.google.android.material.navigation.NavigationView
-
+@RequiresApi(Build.VERSION_CODES.O)
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener{
 
     private var _binding: ActivityMainBinding? = null
@@ -24,6 +26,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private lateinit var drawer : DrawerLayout
     private lateinit var toggle : ActionBarDrawerToggle
     private lateinit var sharedViewModel: SharedViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityMainBinding.inflate(layoutInflater)
@@ -41,7 +44,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         toggle.syncState()
 
         binding.navView.setNavigationItemSelectedListener(this)
-        sharedViewModel = ViewModelProvider(this).get(SharedViewModel::class.java)
+        sharedViewModel = ViewModelProvider(this)[SharedViewModel::class.java]
         // default fragment
         loadFragment(MonthFragment())
     }
@@ -56,7 +59,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val fragment: Fragment = when (item.itemId) {
             R.id.nav_day -> DayFragment()
             R.id.nav_week -> WeekFragment()
-            R.id.nav_month -> ViewPa()
+            R.id.nav_month -> MonthFragment()
             R.id.nav_year -> YearFragment()
             R.id.nav_settings -> SettingsFragment()
             R.id.nav_sync -> SyncingFragment()
